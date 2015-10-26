@@ -26,9 +26,11 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
-
-
-
+m = length(X(:,1));
+mu = mean(X);
+sigma = std(X);
+fprintf('mean: %f, std: %f\n', mu, sigma);
+X_norm = (X - mu) ./ (sigma);
 
 
 
