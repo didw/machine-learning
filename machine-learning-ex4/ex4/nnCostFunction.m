@@ -75,10 +75,12 @@ for c = 1:num_labels
 end
 d_2 = d_3*Theta2.*sigmoidGradient([ones(m,1) z_2]);
 J = J / m;
-J = J + (sum(sum(Theta1(2:end).^2)) + sum(sum(Theta2(2:end).^2)))*lambda/2/m;
+J = J + (sum(sum(Theta1(:,2:end).^2)) + sum(sum(Theta2(:,2:end).^2)))*lambda/2/m;
 
 Theta2_grad = d_3'*[ones(m, 1) a_2]/m;
+Theta2_grad = Theta2_grad + [zeros(num_labels,1) Theta2(:,2:end)*lambda/m];
 Theta1_grad = d_2(:,2:end)'*a_1/m;
+Theta1_grad = Theta1_grad + [zeros(hidden_layer_size,1) Theta1(:,2:end)*lambda/m];
 
 % -------------------------------------------------------------
 
